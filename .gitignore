@@ -1,0 +1,8 @@
+# Python
+.venv/
+.pytest_cache/
+__pycache__/
+#data
+data/*
+data/raw/*
+data/processed/*
