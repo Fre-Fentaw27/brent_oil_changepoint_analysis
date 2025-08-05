@@ -60,3 +60,49 @@ brent_oil_analysis/
 
 - Run src/data_processing.py
 - Run notebooks in numerical order (01 to 03)
+
+## Task 2: [Specific Task Name, e.g., "Brent Oil Change Point Analysis"]
+
+### Overview
+
+This repository contains the analysis for Task 2, focusing on [briefly describe the main goal of the task, e.g., "detecting change points in the Brent crude oil price time series using both frequentist and Bayesian methods"]. The analysis aims to [state the key objectives, e.g., "identify significant shifts in price mean and volatility, quantify their impact, and correlate them with historical events"].
+
+### Data
+
+The analysis uses the Brent crude oil price data from a CSV file located at `[path to data file, e.g., data/processed/brent_clean.csv]`. This dataset has been pre-processed to include:
+
+- **Date:** The date of the observation.
+- **Price:** The daily closing price of Brent crude oil.
+- **Daily Return:** The daily percentage change in price.
+- **Log Return:** The natural logarithm of the daily price returns, used for volatility analysis.
+
+### Methods
+
+The analysis was performed using two distinct methodologies to detect change points:
+
+#### 1. Frequentist Approach (Ruptures)
+
+- **Library:** `ruptures`
+- **Algorithm:** We used the [specify algorithm, e.g., "Binary Segmentation with a PELT (Pruned Exact Linear Time) search method"] to detect change points in the [specify data, e.g., "daily price series"]. The model aims to find abrupt changes in the [specify property, e.g., "mean of the time series"].
+- **Output:** The result is a set of specific dates where the mean price is hypothesized to have changed.
+
+#### 2. Bayesian Approach (PyMC)
+
+- **Library:** `PyMC`
+- **Model:** A Bayesian change point model was constructed to detect shifts in the **volatility** (standard deviation) of the time series.
+- **Prior Distributions:**
+  - **Change Point (`tau`):** A discrete uniform prior was used, assuming a change could occur at any point in the time series.
+  - **Volatilities (`sigma_1`, `sigma_2`):** Half-Normal priors were chosen for the standard deviations before and after the change point, as volatility must be positive.
+  - **Mean (`mu_log_return`):** A Normal prior was used for the mean of the log returns, centered around zero.
+- **Sampling:** The model was sampled using a hybrid MCMC approach (`Metropolis` for `tau` and `NUTS` for continuous parameters) to find the posterior distributions of the parameters. This allows us to quantify the uncertainty of the change point location and the magnitude of the volatility shift.
+
+### Results
+
+The analysis yielded the following key findings:
+
+- **Rupture Change Points:** A list of dates where significant shifts in the Brent oil price mean were detected.
+  - [List the detected dates here, e.g., "1990-08-01 (Gulf War)", "2008-09-15 (Lehman Brothers Collapse)"]
+- **Bayesian Change Point:** The most probable date for a significant shift in volatility was identified, along with its posterior probability distribution.
+  - **Most Probable Date:** `[Insert date here, e.g., 2008-09-15]`
+  - **Volatility Change:** A `[e.g., 150%]` increase in volatility was estimated by comparing the posterior means of `sigma_1` and `sigma_2`.
+- **Historical Correlation:** Both methods identified change points that correspond to known historical events that impacted the oil market, such as [list events and their corresponding dates].
