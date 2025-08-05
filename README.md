@@ -61,7 +61,7 @@ brent_oil_analysis/
 - Run src/data_processing.py
 - Run notebooks in numerical order (01 to 03)
 
-## Task 2: [Specific Task Name, e.g., "Brent Oil Change Point Analysis"]
+## Task 2: Change Point Modeling and Insight Generation
 
 ### Overview
 
@@ -106,3 +106,29 @@ The analysis yielded the following key findings:
   - **Most Probable Date:** `[Insert date here, e.g., 2008-09-15]`
   - **Volatility Change:** A `[e.g., 150%]` increase in volatility was estimated by comparing the posterior means of `sigma_1` and `sigma_2`.
 - **Historical Correlation:** Both methods identified change points that correspond to known historical events that impacted the oil market, such as [list events and their corresponding dates].
+
+## Task 3: Developing an Interactive Dashboard for Data Analysis Results
+
+- Key Features
+
+  - Historical Trends: Display the Brent oil price and volatility over time.
+
+  - Event Highlights: Visualize specific political, economic, or conflict-related events on the time series to show their impact on prices.
+
+  - Interactive Controls: Users can filter data by date range, select specific events, and compare different time periods.
+
+  - Key Indicators: The dashboard presents key metrics, such as average price and volatility changes around detected change points.
+
+  - Responsiveness: The interface is designed to be fully responsive, ensuring a seamless experience on desktop, tablet, and mobile devices.
+
+- Technology Stack
+
+  - Backend: Flask (Python)
+
+  - Serves data via RESTful APIs.
+
+  - Frontend: React.js
+
+  - Builds the interactive user interface.
+
+  - chart Library: [ Recharts, React Chart.js 2]
